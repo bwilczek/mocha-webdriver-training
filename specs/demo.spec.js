@@ -17,14 +17,32 @@ describe('GitHubPage', function() {
       .build()
   })
 
-  it('Should have user name included in the title', function() {
-    let github = new GitHubPage(driver)
-    github.openUser('bwilczek')
-    driver.getTitle().should.eventually.contain('bwilczek')
-    // add 'done' param to 'it' before uncommenting the lines below
-    // driver.getTitle().then(function(title) {
-    //   console.log(title)
-    //   done()
-    // })
-  })
-})
+  describe('Single user page', function() {
+    let github
+
+    before(function(done) {
+      github = new GitHubPage(driver)
+      github.openUser('bwilczek').then(function(){done()})
+    })
+
+    it('Should have proper title', function() {
+      // the nice way:
+       driver.getTitle().should.eventually.contain('bwilczek')
+
+      // the debug-friendly way:
+      // driver.getTitle().then(function(title) {
+      //   // console.log(title)
+      //   title.should.contain('bwilczek')
+      //   done()
+      // })
+    })
+
+    it('Should have some repos', function(done) {
+      github.getRepoCountAsString().then(function(cnt){
+        parseInt(cnt).should.be.above(0)
+        done()
+      })
+    })
+
+  }) // describe
+}) // describe
