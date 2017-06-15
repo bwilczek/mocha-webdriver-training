@@ -8,7 +8,6 @@ chai.use(chaiAsPromised)
 chai.should()
 
 describe('GitHubPage', function() {
-
   let driver
 
   before(function() {
@@ -22,12 +21,14 @@ describe('GitHubPage', function() {
 
     before(function(done) {
       github = new GitHubPage(driver)
-      github.openUser('bwilczek').then(function(){done()})
+      github.openUser('bwilczek').then(function() {
+        done()
+      })
     })
 
     it('Should have proper title', function() {
       // the nice way:
-       driver.getTitle().should.eventually.contain('bwilczek')
+      driver.getTitle().should.eventually.contain('bwilczek')
 
       // the debug-friendly way:
       // driver.getTitle().then(function(title) {
@@ -38,11 +39,10 @@ describe('GitHubPage', function() {
     })
 
     it('Should have some repos', function(done) {
-      github.getRepoCountAsString().then(function(cnt){
+      github.getRepoCountAsString().then(function(cnt) {
         parseInt(cnt).should.be.above(0)
         done()
       })
     })
-
   }) // describe
 }) // describe
