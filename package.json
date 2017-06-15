@@ -1,0 +1,36 @@
+{
+  "name": "mocha-webdriver-training",
+  "version": "0.0.1",
+  "description": "Learning WebDriver from the JavaScript perspective",
+  "main": "index.js",
+  "repository": "git@github.com:bwilczek/mocha-webdriver-training.git",
+  "author": "bwilczek",
+  "license": "MIT",
+  "dependencies": {
+    "babel-eslint": "^7.2.3",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-syntax-export-extensions": "^6.13.0",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-env": "^1.5.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^4.0.2",
+    "chai-as-promised": "^7.0.0",
+    "eslint": "^4.0.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-mocha": "^4.10.1",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "lodash": "^4.17.4",
+    "mocha": "^3.4.2",
+    "selenium-webdriver": "^3.4.0"
+  },
+  "scripts": {
+    "eslint": "./node_modules/.bin/eslint lib specs; exit 0",
+    "test": "./node_modules/.bin/mocha --compilers js:babel-register specs/**/*.spec.js"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "env": {
+    "es6": true,
+    "mocha": true
+  },
+  "plugins": [
+    "mocha"
+  ],
+  "extends": "standard",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
+    "allowImportExportEverywhere": false
+  },
+  "rules": {
+    "strict": 1,
+    "space-before-function-paren": 0,
+    "comma-dangle": 0
+  }
+}
