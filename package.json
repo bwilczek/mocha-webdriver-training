@@ -31,6 +31,6 @@
   },
   "scripts": {
     "eslint": "./node_modules/.bin/eslint lib specs; exit 0",
-    "test": "./node_modules/.bin/mocha --compilers js:babel-register specs/**/*.spec.js"
+    "test": "SELENIUM_PROMISE_MANAGER=0 ./node_modules/.bin/mocha --compilers js:babel-register specs/**/*.spec.js"
   }
 }
