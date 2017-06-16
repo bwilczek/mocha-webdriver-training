@@ -56,9 +56,13 @@ describe('GitHubPage', function() {
       github.getRepoCountAsString().should.eventually.be.aboveAsInt(0)
     })
 
-    it('Should have some repos PRO', async function() {
+    it('Should have some repos cnt as an int', async function() {
       const cnt = await github.getRepoCount()
       cnt.should.be.above(0)
+    })
+
+    it('Should have some repos without custom assertion', function() {
+      github.getRepoCount().should.eventually.be.above(0)
     })
   }) // describe
 }) // describe
