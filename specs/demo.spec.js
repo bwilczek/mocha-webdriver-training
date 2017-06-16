@@ -4,8 +4,14 @@ import { Builder } from 'selenium-webdriver'
 import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 
-chai.use(chaiAsPromised)
 chai.should()
+
+chai.Assertion.addChainableMethod('aboveAsInt', function(expected) {
+  var expected = parseInt(expected),
+      actual = parseInt(this._obj);
+  return actual.should.be.above(expected)
+});
+chai.use(chaiAsPromised)
 
 describe('GitHubPage', function() {
   let driver
@@ -38,11 +44,8 @@ describe('GitHubPage', function() {
       // })
     })
 
-    it('Should have some repos', function(done) {
-      github.getRepoCountAsString().then(function(cnt) {
-        parseInt(cnt).should.be.above(0)
-        done()
-      })
+    it('Should have some repos', function() {
+      github.getRepoCountAsString().should.eventually.be.aboveAsInt(0)
     })
   }) // describe
 }) // describe
