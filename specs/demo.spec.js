@@ -5,12 +5,11 @@ import chai from 'chai'
 import chaiAsPromised from 'chai-as-promised'
 
 chai.should()
-
 chai.Assertion.addChainableMethod('aboveAsInt', function(expected) {
-  var expected = parseInt(expected),
-      actual = parseInt(this._obj);
+  let actual = parseInt(this._obj)
+  expected = parseInt(expected)
   return actual.should.be.above(expected)
-});
+})
 chai.use(chaiAsPromised)
 
 describe('GitHubPage', function() {
@@ -20,6 +19,10 @@ describe('GitHubPage', function() {
     driver = new Builder()
       .forBrowser('phantomjs')
       .build()
+  })
+
+  after(function() {
+    driver.quit()
   })
 
   describe('Single user page', function() {
@@ -44,8 +47,18 @@ describe('GitHubPage', function() {
       // })
     })
 
+    it('Should have some repos PRO', async function() {
+      const title = await driver.getTitle()
+      title.should.contain('bwilczek')
+    })
+
     it('Should have some repos', function() {
       github.getRepoCountAsString().should.eventually.be.aboveAsInt(0)
+    })
+
+    it('Should have some repos PRO', async function() {
+      const cnt = await github.getRepoCount()
+      cnt.should.be.above(0)
     })
   }) // describe
 }) // describe

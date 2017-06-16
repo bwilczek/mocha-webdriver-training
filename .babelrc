@@ -5,6 +5,10 @@
   ],
   "plugins": [
     "add-module-exports",
-    "syntax-export-extensions"
+    "syntax-export-extensions",
+    ["transform-runtime", {
+      "polyfill": false,
+      "regenerator": true
+    }]
   ]
 }
